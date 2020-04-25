@@ -198,8 +198,11 @@ namespace UniProject.Controllers
 
             return View("NewProperty");
         }
-        public ActionResult DetailProperty(int id)
+        public ActionResult DetailProperty(int? id)
         {
+            if (id == null)
+                return Content("Try again");
+
             var propertyIMS = _context.PropertyIMSs.SingleOrDefault(p => p.Id == id);
             var transactions = _context.Transactions.Where(t => t.PropertyIMSId == id).ToList();
             var customers = _context.Customers.ToList();
@@ -218,10 +221,10 @@ namespace UniProject.Controllers
         [HttpGet]
         public ActionResult EditProperty(int? id)
         {
-            if(id == null)
-                return Content("Try again");
-
             var property = _context.PropertyIMSs.SingleOrDefault(p => p.Id == id);
+
+            if(property == null)
+                return Content("Try again");
 
             return View(property);
         }
