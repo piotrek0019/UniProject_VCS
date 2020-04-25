@@ -1,0 +1,81 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="icon" href="~/Content/Images/ikona2.png" type="image/gif" sizes="16x16">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="container">
+
+        <nav class="navbar navbar-light">
+            <div class="form-inline">
+                @Html.ActionLink("august-Admin", "Index", "Admin", new { @class = "my-0 mr-md-auto mylogo" })
+                <div class="btn-group mr-1 ml-1" role="group" aria-label="Button group with nested dropdown">
+                    <div class="btn-group" role="group">
+                        <button id="btnGroupDrop1" type="button" class="btn btn-outline-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Properties
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                            @Html.ActionLink("Add Property", "New", "Admin", null, new { @class = "dropdown-item" })
+                            @Html.ActionLink("List of Properties", "PropertyList", "Admin", null, new { @class = "dropdown-item" })
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-group mr-1" role="group" aria-label="Button group with nested dropdown">
+                    <div class="btn-group" role="group">
+                        <button id="btnGroupDrop1" type="button" class="btn btn-outline-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            News
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                            @Html.ActionLink("Add News", "NewNews", "Admin", null, new { @class = "dropdown-item" })
+                            @Html.ActionLink("List of News", "ListNews", "Admin", null, new { @class = "dropdown-item" })
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-group mr-1" role="group" aria-label="Button group with nested dropdown">
+                    <div class="btn-group" role="group">
+                        <button id="btnGroupDrop1" type="button" class="btn btn-outline-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            SubPages
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                            @Html.ActionLink("Add SubPage", "NewSPage", "Admin", null, new { @class = "dropdown-item" })
+                            @Html.ActionLink("List of List Subpages", "ListSPage", "Admin", null, new { @class = "dropdown-item" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                @if (@User.Identity.IsAuthenticated)
+                {
+                    @Html.ActionLink("Hello " + @User.Identity.Name + "!", "Index", "Admin", new { area = "" })
+                    <a href="@Url.Action("Logout", "Auth")">Logout</a>
+                }
+                else
+                {
+                    @Html.ActionLink("Login", "Login", "Auth")
+                }
+            </div>
+        </nav>
+
+        <div>
+            @RenderBody()
+        </div>
+    </div>
+    
+    @RenderSection("scripts", required: false)
+</body>
+</html>

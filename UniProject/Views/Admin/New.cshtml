@@ -1,0 +1,66 @@
+﻿@model UniProject.Models.Property
+@{
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+@Html.ActionLink("Back to menu", "Index", "Admin", null, new {@class="btn btn-outline-primary"})
+    <h2>New Property</h2>
+
+    @using (Html.BeginForm("New", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="form-group">
+            @Html.ValidationMessageFor(e => e.Title, null, new { @class = "text-danger" })<br />
+            @Html.LabelFor(m => m.Title)
+            @Html.TextBoxFor(m => m.Title, new { @class = "form-control myTextBox50" })
+        </div>
+    <div class="form-group">
+        @Html.ValidationMessageFor(e => e.City, null, new { @class = "text-danger" })<br />
+        @Html.LabelFor(m => m.City)
+        @Html.TextBoxFor(m => m.City, new { @class = "form-control myTextBox50" })
+    </div>
+        <div class="form-group">
+            @Html.ValidationMessageFor(e => e.Content, null, new { @class = "text-danger" })<br />
+            @Html.LabelFor(m => m.Content)
+            @Html.TextAreaFor(m => m.Content, 20, 80, new { @class = "form-control required"})
+
+        </div>
+        <div class="form-group">
+            @Html.ValidationMessageFor(e => e.NoOfBeds, null, new { @class = "text-danger" })<br />
+            @Html.LabelFor(m => m.NoOfBeds)
+            @Html.TextBoxFor(m => m.NoOfBeds, new { @class = "form-control myTextBox30"} )
+        </div>
+        <div class="formm-group">
+            @Html.ValidationMessageFor(e => e.Price, null, new { @class = "text-danger" })<br />
+            @Html.LabelFor(m => m.Price)
+            @Html.TextBoxFor(m => m.Price, new { @class = "form-control myTextBox30" })
+        </div>
+    <div class="form-check form-check-inline ">
+        <table>
+            <tr>
+                <td>
+                    @Html.ValidationMessageFor(e => e.RentOrBuy, null, new { @class = "text-danger" })<br />
+                    @Html.LabelFor(m => m.RentOrBuy, new { @class = "form-check-label" })
+                </td>
+                <td>
+                    @Html.RadioButtonFor(m => m.RentOrBuy, "true", new { @class = "form-check-input" })<label class="form-check-label">Rent</label>
+                </td>
+                <td>
+                    @Html.RadioButtonFor(m => m.RentOrBuy, "false", new { @class = "form-check-input" })<label class="form-check-label">Buy</label>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="file-field">
+        @Html.LabelFor(m => m.Image)
+        <div class="btn btn-primary btn-sm">
+
+            <input type="file" name="images" multiple="multiple" />
+            
+        </div>
+    </div>
+
+        @Html.HiddenFor(m => m.Id)
+        @Html.AntiForgeryToken()
+
+    <button type="submit" class="btn btn-outline-primary">Save</button>
+    }

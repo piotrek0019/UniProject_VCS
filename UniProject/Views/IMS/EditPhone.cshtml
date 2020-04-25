@@ -1,0 +1,23 @@
+﻿@model UniProject.Models.IMS.Phone
+@{
+    ViewBag.Title = "EditPhone";
+    Layout = "~/Views/Shared/_IMS_Layout.cshtml";
+}
+
+<h2>EditPhone</h2>
+
+@using (Html.BeginForm("EditPhone", "IMS", FormMethod.Post))
+{
+    int url = ViewBag.url;
+    <div class="from-group">
+        @Html.DisplayNameFor(p => p.PhoneNumber)
+        @Html.TextBoxFor(p => p.PhoneNumber, new { @class = "form-control" })
+    </div>
+    
+    @Html.Hidden("url", url)
+    @Html.HiddenFor(p => p.Id)
+    @Html.AntiForgeryToken()
+    
+    <button type="submit" class="btn btn-primary btn-sm">Save</button>
+}
+

@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Menu";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+<head>
+    <style>
+        .myfooter {
+            position: fixed !important;
+        }
+    </style>
+</head>
+
+<h2>Menu</h2>
+<div class="form-group">
+    <div class="row mt-sm-1">
+        <div class="col">
+            @Html.ActionLink("New Property", "New", "Admin", new { @class = "btn btn-secondary" })
+        </div>
+        <div class="col">
+            @Html.ActionLink("Add News", "NewNews", "Admin", new { @class = "btn btn-secondary" })
+        </div>
+        <div class="col">
+            @Html.ActionLink("Add SubPage", "NewSPage", "Admin", new { @class = "btn btn-secondary" })
+        </div>
+    </div>
+    
+    <div class="row mt-sm-1">
+        <div class="col">
+            @Html.ActionLink("Edit Properites", "PropertyList", "Admin", new { @class = "btn btn-secondary" })
+        </div>
+        <div class="col">
+            @Html.ActionLink("Edit News", "ListNews", "Admin", new { @class = "btn btn-secondary" })
+        </div>
+        <div class="col">
+            @Html.ActionLink("Edit SubPages", "ListSPage", "Admin", new { @class = "btn btn-secondary" })
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,37 @@
+﻿@model IEnumerable<UniProject.Models.News>
+@{
+    ViewBag.Title = "News";
+    Layout = "~/Views/Shared/_Container_Layout.cshtml";
+}
+@using System.Text.RegularExpressions;
+
+@helper StripHTML(string input)
+{
+    if (!string.IsNullOrEmpty(input))
+    {
+        input = Regex.Replace(input, "<.*?>", String.Empty);
+        <span>@input</span>
+    }
+}
+
+
+    <h2>News</h2>
+    @foreach (var news in Model)
+    {
+        <a href="@Url.Action("News", "Properties", new {id = news.Id})" class="text-dark">
+            <h2>@Html.DisplayFor(n => news.Title)</h2>
+            <br />
+            <h6>@Html.DisplayFor(n => news.Added)</h6>
+            @if(news.Content.Length > 300)
+            { 
+            @StripHTML(news.Content.Substring(0, 300))
+            }
+            else
+            { 
+            @StripHTML(news.Content)
+            }...
+        </a>
+    <hr />
+   
+    }
+

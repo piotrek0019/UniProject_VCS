@@ -1,0 +1,37 @@
+﻿@model UniProject.Models.IMS.Customer
+@{
+    ViewBag.Title = "NewCustomer";
+    Layout = "~/Views/Shared/_IMS_Layout.cshtml";
+}
+
+<h2>NewCustomer</h2>
+
+@using (Html.BeginForm("NewCustomer", "IMS", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.ValidationMessageFor(c => c.Name, null, new { @class = "text-danger" })<br />
+        @Html.LabelFor(p => p.Name)
+        @Html.TextBoxFor(p => p.Name, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.ValidationMessageFor(c => c.Adress, null, new { @class = "text-danger" })<br />
+        @Html.LabelFor(p => p.Adress)
+        @Html.TextBoxFor(p => p.Adress, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.ValidationMessageFor(c => c.PostCode, null, new { @class = "text-danger" })<br />
+        @Html.LabelFor(p => p.PostCode)
+        @Html.TextBoxFor(p => p.PostCode, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.ValidationMessageFor(c => c.City, null, new { @class = "text-danger" })<br />
+        @Html.LabelFor(p => p.City)
+        @Html.TextBoxFor(p => p.City, new { @class = "form-control" })
+    </div>
+    
+
+    @Html.AntiForgeryToken()
+
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+

@@ -1,0 +1,37 @@
+﻿@model UniProject.Models.User
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Login_Layout.cshtml";
+}
+<div class="container">
+    <div class="row mt-5">
+        <div class="col align-self-start"></div>
+        <div class="col align-self-center">
+            <h2>Log In</h2>
+
+            @Html.ValidationSummary(true, null, new { @class = "text-danger" })
+
+            @using (Html.BeginForm("Login", "Auth"))
+            {
+                <div class="form-group">
+                    @Html.ValidationMessageFor(e => e.Email, null, new { @class="text-danger"})<br />
+                    @Html.LabelFor(l => l.Email)
+                    @Html.TextBoxFor(l => l.Email, new { @class = "form-control", placeholder = "Enter email" })
+                </div>
+                <div class="form-group">
+                    @Html.ValidationMessageFor(e => e.Password, null, new { @class = "text-danger" })<br />
+                    @Html.LabelFor(l => l.Password)
+                    @Html.PasswordFor(l => l.Password, new { @class = "form-control", placeholder = "Password" })
+                </div>
+    
+                @Html.HiddenFor(u => u.ReturnUrl)
+                <div>
+                    <button type="submit" class="btn btn-primary">Log In</button>
+                </div>
+
+            }
+        </div>
+        <div class="col align-self-end"></div>
+    </div>
+</div>

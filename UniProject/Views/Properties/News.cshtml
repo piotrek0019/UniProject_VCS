@@ -1,0 +1,16 @@
+﻿@model UniProject.Models.News
+
+@{
+    ViewBag.Title = "News";
+    Layout = "~/Views/Shared/_Container_Layout.cshtml";
+}
+
+<div class="container my-pg-bt">
+    <h2>@Html.DisplayFor(n => n.Title)</h2>
+
+    @Html.Raw(Model.Content)
+
+</div>
+
+
+

@@ -1,0 +1,31 @@
+﻿@model UniProject.Models.ViewModels.StaffPhoneEmailListViewModel
+@{
+    ViewBag.Title = "DetailStaff";
+    Layout = "~/Views/Shared/_IMS_Layout.cshtml";
+}
+
+<h2>DetailStaff</h2>
+
+<p>@Html.DisplayFor(s =>s.Staff.Name)</p>
+<h4>@Html.LabelFor(s =>s.Staff.Adress)</h4>
+ <p>@Html.DisplayFor(s =>s.Staff.Adress)</p>
+<p>@Html.DisplayFor(s =>s.Staff.City)</p>
+<p>@Html.DisplayFor(s =>s.Staff.PostCode)</p>
+
+<h3>Phone Numbers</h3>
+<ul>
+    @foreach(var phones in Model.Phone)
+    {
+        <li>@Html.ActionLink(phones.PhoneNumber, "EditPhone", new {id = phones.Id, url = 2}, new { @class = "p-2 text-dark" })</li>
+    }
+</ul>
+@Html.ActionLink("Add Phone", "NewPhone", "IMS", new { id = Model.Staff.Id, url = 2 }, new { @class = "btn btn-outline-primary" })
+<h3>Email Adresses</h3>
+<ul>
+    @foreach (var emails in Model.Email)
+    {
+        <li>@Html.ActionLink(emails.EmailAdress, "EditEmail", new { id = emails.Id, url = 2  }, new { @class = "p-2 text-dark" })</li>
+    }
+</ul>
+@Html.ActionLink("Add Email", "NewEmail", "IMS", new { id = Model.Staff.Id, url = 2 }, new { @class = "btn btn-outline-primary" })
+

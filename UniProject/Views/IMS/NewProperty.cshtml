@@ -1,0 +1,40 @@
+﻿@model UniProject.Models.IMS.PropertyIMS
+@{
+    ViewBag.Title = "NewProperty";
+    Layout = "~/Views/Shared/_IMS_Layout.cshtml";
+}
+
+<h2>Add Property</h2>
+
+@using (Html.BeginForm("NewProperty", "IMS", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.ValidationMessageFor(p => p.Name, null, new { @class = "text-danger" })<br />
+        @Html.LabelFor(p => p.Name)
+        @Html.TextBoxFor(p => p.Name, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.ValidationMessageFor(p => p.Adress, null, new { @class = "text-danger" })<br />
+        @Html.LabelFor(p => p.Adress)
+        @Html.TextBoxFor(p => p.Adress, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.ValidationMessageFor(p => p.PostCode, null, new { @class = "text-danger" })<br />
+        @Html.LabelFor(p => p.PostCode)
+        @Html.TextBoxFor(p => p.PostCode, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.ValidationMessageFor(p => p.City, null, new { @class = "text-danger" })<br />
+        @Html.LabelFor(p => p.City)
+        @Html.TextBoxFor(p => p.City, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.ValidationMessageFor(p => p.Description, null, new { @class = "text-danger" })<br />
+        @Html.LabelFor(p => p.Description)
+        @Html.TextAreaFor(p => p.Description, 20, 80, new { @class = "form-control" })
+    </div>
+
+    @Html.AntiForgeryToken()
+
+    <button type="submit" class="btn btn-primary">Save</button>
+}

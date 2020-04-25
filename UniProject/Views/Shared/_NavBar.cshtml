@@ -1,0 +1,19 @@
+﻿@model List<UniProject.Models.SubPage>
+
+
+<nav class="my-2 my-md-0 mr-md-3">
+
+    @Html.ActionLink("News", "NewsList", "Properties", new { @class = "p-2 text-dark" })
+    @foreach (var pages in Model)
+    {
+        @Html.ActionLink(pages.Title, "SubPage", "Properties", new { id = pages.Id }, new { @class = "p-2 text-dark" })
+    }
+    @if (@User.Identity.IsAuthenticated)
+    {
+        @Html.ActionLink("Hello " + @User.Identity.Name + "!", "Index", "Admin", new { area = "" })
+    <a href="@Url.Action("Logout", "Auth")">Logout</a>
+    }
+    
+    
+</nav>
+

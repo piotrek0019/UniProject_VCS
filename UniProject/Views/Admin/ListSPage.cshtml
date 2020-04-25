@@ -1,0 +1,13 @@
+﻿@model List<UniProject.Models.SubPage>
+
+@{
+    ViewBag.Title = "ListSPage";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<h2>ListSPage</h2>
+
+@foreach(var sPages in Model)
+{
+    @Html.ActionLink(sPages.Title, "EditSPage", "Admin", new { id = sPages.Id }, new { @class = "p-2 text-dark" })<hr />
+}   

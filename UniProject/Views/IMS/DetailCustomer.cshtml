@@ -1,0 +1,63 @@
+﻿@model UniProject.Models.ViewModels.CustTransPropViewModel
+@{
+    ViewBag.Title = "DetailCustomer";
+    Layout = "~/Views/Shared/_IMS_Layout.cshtml";
+}
+
+
+
+<h2>@Html.DisplayNameFor(c => c.Customer.Name): @Html.DisplayFor(c => c.Customer.Name)</h2>
+<p>@Html.DisplayNameFor(c =>c.Customer.Adress): @Html.DisplayFor(c =>c.Customer.Adress)</p>
+<p>@Html.DisplayNameFor(c => c.Customer.PostCode): @Html.DisplayFor(c => c.Customer.PostCode)</p>
+<p>@Html.DisplayNameFor(c => c.Customer.City): @Html.DisplayFor(c => c.Customer.City)</p>
+
+@Html.ActionLink("Edit Customer", "EditCustomer", "IMS", new { id = Model.Customer.Id}, new { @class = "btn btn-outline-primary" })
+<hr />
+<p>Phone numbers:</p>
+
+<ul>
+    @foreach (var phone in Model.Phone)
+    {
+        <li>@Html.ActionLink(phone.PhoneNumber, "EditPhone", "IMS", new { id = phone.Id, url = 1 }, new { @class = "p-2 text-dark" })</li>
+    }
+</ul>
+@Html.ActionLink("Add Phone", "NewPhone", "IMS", new { id = Model.Customer.Id, url = 1}, new { @class = "btn btn-outline-primary" })
+<hr />
+<p>Email:</p>
+<ul>
+    @foreach (var email in Model.Email)
+    {
+        <li>@Html.ActionLink(email.EmailAdress, "EditEmail", "IMS", new { id = email.Id, url = 1 }, new { @class = "p-2 text-dark" })</li>
+    }
+</ul>
+@Html.ActionLink("Add Email", "NewEmail", "IMS", new { id = Model.Customer.Id, url = 1}, new { @class = "btn btn-outline-primary" })
+<hr />
+<h3>Services</h3>
+
+<ul>
+    @foreach (var services in Model.Service)
+    {
+        var serviceName = services.Name + ": " + services.Price + "£";
+        <li>
+            @Html.ActionLink(serviceName, "EditService", "IMS", new { id = services.Id }, new { @class = "p-2 text-dark" })
+        </li>
+    }
+</ul>
+@Html.ActionLink("Add Service", "NewService", "IMS", new { id = Model.Customer.Id}, new { @class = "btn btn-outline-primary" })
+<hr />
+
+<h3>Transactions: </h3>
+<ul>
+    @foreach (var trans in Model.Transaction)
+    {
+        var transType = Model.TransType.Where(t => t.Id == trans.TransTypeId).FirstOrDefault();
+        var property = Model.PropertyIMS.Where(p => p.Id == trans.PropertyIMSId).FirstOrDefault();
+        string transaction = @Html.DisplayNameFor(t => trans.Price) + ": " + trans.Price + " - " + transType.Name + " for: " + property.Name;
+
+        <li>@Html.ActionLink(@transaction, "EditTrans", "IMS", new { id = trans.Id, url = 1 }, new { @class = "p-2 text-dark" })</li>
+    }
+</ul>
+@Html.ActionLink("Add Transaction", "NewTrans", "IMS", new { id = Model.Customer.Id, url = 1 }, new { @class = "btn btn-outline-primary" })
+
+
+

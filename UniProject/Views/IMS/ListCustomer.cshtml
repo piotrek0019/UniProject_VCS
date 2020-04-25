@@ -1,0 +1,14 @@
+﻿@model IEnumerable<UniProject.Models.IMS.Customer>
+@{
+    ViewBag.Title = "ListCustomer";
+    Layout = "~/Views/Shared/_IMS_Layout.cshtml";
+}
+
+<h2>ListCustomer</h2>
+
+@foreach (var cust in Model)
+{
+    @Html.ActionLink(cust.Name, "DetailCustomer", "IMS", new { id = cust.Id }, new { @class = "p-2 text-dark" })<hr />
+}
+
+

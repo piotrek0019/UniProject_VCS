@@ -1,0 +1,28 @@
+﻿@model UniProject.Models.ViewModels.PropertiesImagesViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Container_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<h3>@Html.DisplayFor(p => p.Property.Title)</h3>
+<hr />
+<p>City: @Html.DisplayFor(p => p.Property.City)</p>
+<p>Number of beds: @Html.DisplayFor(p => p.Property.NoOfBeds)</p>
+<p>Price: @Html.DisplayFor(p => p.Property.Price) &#163;</p>
+<p>@Html.DisplayFor(p => p.Property.Added)</p>
+@Html.Raw(Model.Property.Content)<hr />
+@Html.ActionLink("Ask for Property", "Email", "Properties", new { id = Model.Property.Id }, new { @class = "btn btn-outline-primary" })
+<hr />
+
+
+@foreach (var image in Model.Images)
+{
+   
+                <img src="@Url.Content("~/Content/Images/" + Model.Property.Id + "/" + image.FileName)" class="img-fluid"/>
+         
+   <hr/>
+}
+

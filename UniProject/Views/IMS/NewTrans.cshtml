@@ -1,0 +1,69 @@
+﻿@model UniProject.Models.ViewModels.TransTypeCustPropViewModel
+
+@{
+    ViewBag.Title = "NewTrans";
+    Layout = "~/Views/Shared/_IMS_Layout.cshtml";
+}
+
+<h2>New Transaction</h2>
+
+@using (Html.BeginForm("NewTrans", "IMS"))
+{
+    int id = ViewBag.id;
+    int url = ViewBag.url;
+    
+    if (url == 1)
+    {
+        var customer = Model.Customer.Where(c => c.Id == id).FirstOrDefault();
+        <div class="form-group">
+            @Html.ValidationMessageFor(c => customer.Name, null, new { @class = "text-danger" })
+            @Html.Label("Customer")
+            @Html.TextBoxFor(c => customer.Name, new { @class = "form-control", disabled="disabled", @readonly = "readonly" })
+            @Html.HiddenFor(c => c.Transaction.CustomerId)  
+        </div>
+    }
+    if (url == 2)
+    {
+        <div class="form-group">
+            @Html.ValidationMessageFor(c => c.Transaction.CustomerId, null, new { @class = "text-danger" })<br />
+            @Html.Label("Customer")
+            @Html.DropDownListFor(c => c.Transaction.CustomerId, new SelectList(Model.Customer, "Id", "Name"), "Select Customer", new { @class = "form-control" })
+        </div>
+    }
+    if (url == 2)
+    {
+        var property = Model.PropertyIMS.Where(c => c.Id == id).FirstOrDefault();
+        <div class="form-group">
+            @Html.ValidationMessageFor(c => property.Name, null, new { @class = "text-danger" })<br />
+            @Html.Label("Property")
+            @Html.TextBoxFor(c => property.Name, new { @class = "form-control", disabled = "disabled", @readonly = "readonly" })
+            @Html.HiddenFor(c => c.Transaction.PropertyIMSId)
+        </div>
+    }
+    if (url == 1)
+    {
+        <div class="form-group">
+            @Html.ValidationMessageFor(c => c.Transaction.PropertyIMSId, null, new { @class = "text-danger" })<br />
+            @Html.Label("Property")
+            @Html.DropDownListFor(c => c.Transaction.PropertyIMSId, new SelectList(Model.PropertyIMS, "Id", "Name"), "Select Property", new { @class = "form-control" })
+        </div>
+    }
+    <div class="form-group">
+        @Html.ValidationMessageFor(c => c.Transaction.TransTypeId, null, new { @class = "text-danger" })<br />
+        @Html.Label("Transaction type")
+        @Html.DropDownListFor(c => c.Transaction.TransTypeId, new SelectList(Model.TransType, "Id", "Name"), "Select Transaction Type", new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.ValidationMessageFor(c => c.Transaction.Price, null, new { @class = "text-danger" })<br />
+        @Html.LabelFor(p => p.Transaction.Price)
+        @Html.TextBoxFor(p => p.Transaction.Price, new { @class = "form-control" })
+    </div>
+
+    @Html.Hidden("url", url);
+
+    @Html.AntiForgeryToken()
+
+
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+

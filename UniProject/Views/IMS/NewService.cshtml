@@ -1,0 +1,28 @@
+﻿@model UniProject.Models.ViewModels.CustServiceViewModel
+@{
+    ViewBag.Title = "NewService";
+    Layout = "~/Views/Shared/_IMS_Layout.cshtml";
+}
+
+<h2>NewService</h2>
+
+@using (Html.BeginForm("NewService", "IMS", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(c => c.Customer.Name)
+        @Html.TextBoxFor(c => c.Customer.Name, new { @class = "form-control", disabled = "disabled", @readonly = "readonly" })
+        @Html.HiddenFor(s => s.Service.CustomerId)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(s => s.Service.Name)
+        @Html.TextBoxFor(s => s.Service.Name, new { @class="form-control"})
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(s => s.Service.Price)
+        @Html.TextBoxFor(s => s.Service.Price, new { @class = "form-control" })
+    </div>
+    
+    @Html.AntiForgeryToken()
+    
+    <button type="submit" class="btn btn-primary">Save</button>
+}

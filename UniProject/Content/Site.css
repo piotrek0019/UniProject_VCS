@@ -1,0 +1,95 @@
+﻿body {
+}
+@font-face {
+	font-family:'Museo';
+	src: url('/Content/Fonts/Museo/3313AB_0_0.eot');
+	src: url('/Content/Fonts/Museo/3313AB_0_0.eot?#iefix') 
+		format('embedded-opentype'),
+		url('/Content/Fonts/Museo/3313AB_0_0.woff2') 
+		format('woff2'),
+		url('/Content/Fonts/Museo/3313AB_0_0.woff') 
+		format('woff'),
+		url('/Content/Fonts/Museo/3313AB_0_0.ttf') 
+		format('truetype');
+}
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.container {
+  max-width: 960px;
+}
+
+.pricing-header {
+  max-width: 700px;
+}
+
+.card-deck .card {
+  min-width: 220px;
+}
+ .mylogo{
+	font-family: Museo, 'Open Sans', Helvetica, Arial, Lucida, sans-serif!important;
+	text-decoration: none!important;
+    font-size: 45px;
+    color: #6c6c6c!important
+}
+.mylogo:hover {
+	color: #5F5E5D!important;
+}
+.MyH2-1{
+    margin-left: 20px!important;
+    margin-right: 20px!important;
+    color:#f2f2f2!important;
+}
+.img-gal img
+{
+    width:100%!important;
+}
+
+.myBackground{
+    background: url("../Content/Images/background2.svg")!important;
+    background-attachment: fixed!important;
+}
+.myfooter{
+        position: relative!important;
+    bottom: 0!important;
+    padding-top: 20px!important;
+    padding-bottom: 20px!important;
+    height: 140px!important;
+    
+    display: block!important;
+    width: 100%;
+    
+}
+.my-bg-col{
+    background-color: #f3f2f3!important;
+}
+.my-pg-bt{
+    padding-bottom: 140px!important;
+}
+.myTextBox50{
+    width:50%!important;
+}
+.myTextBox30{
+    width:30%!important;
+}

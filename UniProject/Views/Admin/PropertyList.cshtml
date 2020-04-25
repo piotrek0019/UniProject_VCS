@@ -1,0 +1,19 @@
+﻿@model List<UniProject.Models.Property>
+
+@{
+    ViewBag.Title = "Edit properties";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+    var PropertyList = " ";
+}
+@Html.ActionLink("Back to menu", "Index", "Admin", null, new { @class = "btn btn-outline-primary" })
+<h2>Edit properties</h2>
+
+
+
+
+@foreach(var prop in Model)
+{
+    PropertyList = prop.Title + " - " + prop.City;
+    @Html.ActionLink(PropertyList, "Edit", "Admin", new { id = prop.Id }, new { @class = "p-2 text-dark" })<hr />
+}
+

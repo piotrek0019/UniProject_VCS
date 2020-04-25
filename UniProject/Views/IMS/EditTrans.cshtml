@@ -1,0 +1,43 @@
+﻿@model UniProject.Models.ViewModels.TransTypeCustPropViewModel
+
+@{
+    ViewBag.Title = "EditTrans";
+    Layout = "~/Views/Shared/_IMS_Layout.cshtml";
+}
+
+<h2>NewTrans</h2>
+
+@using (Html.BeginForm("EditTrans", "IMS"))
+{
+    int url = ViewBag.url;
+    <div class="form-group">
+        @Html.ValidationMessageFor(c => c.Transaction.CustomerId, null, new { @class = "text-danger" })<br />
+        @Html.Label("Customer")
+        @Html.DropDownListFor(c => c.Transaction.CustomerId, new SelectList(Model.Customer, "Id", "Name"), "Select Cutomer", new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.ValidationMessageFor(c => c.Transaction.PropertyIMSId, null, new { @class = "text-danger" })<br />
+        @Html.Label("Property")
+        @Html.DropDownListFor(c => c.Transaction.PropertyIMSId, new SelectList(Model.PropertyIMS, "Id", "Name"), "Select Property", new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.ValidationMessageFor(c => c.Transaction.TransTypeId, null, new { @class = "text-danger" })<br />
+        @Html.Label("Transaction type")
+        @Html.DropDownListFor(c => c.Transaction.TransTypeId, new SelectList(Model.TransType, "Id", "Name"), "Select Cutomer", new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.ValidationMessageFor(c => c.Transaction.Price, null, new { @class = "text-danger" })<br />
+        @Html.LabelFor(p => p.Transaction.Price)
+        @Html.TextBoxFor(p => p.Transaction.Price, new { @class = "form-control" })
+    </div>
+    
+    
+    @Html.Hidden("url", url)
+        
+    @Html.HiddenFor(m => m.Transaction.Id)
+        
+    @Html.AntiForgeryToken()
+
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+

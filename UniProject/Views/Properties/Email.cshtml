@@ -1,0 +1,35 @@
+﻿@model UniProject.Models.Property
+
+@using CaptchaMvc.HtmlHelpers
+@{
+    ViewBag.Title = "Email";
+    Layout = "~/Views/Shared/_Container_Layout.cshtml";
+}
+
+<h2>Email</h2>
+
+@using (Html.BeginForm("sendEmail", "Properties", FormMethod.Post))
+{
+    string message = "Property Id: " + Model.Id + "\nTitle: " + Model.Title + "\nNumber of Beds: " + Model.NoOfBeds + "\nStart the message here: ";
+    <div class="form-group">
+        <p>Message</p>
+        @Html.TextArea("message", message, 20, 80, new { @class = "form-control required" })
+    </div>
+    <div class="form-group">
+        <p>Your name</p>
+        @Html.TextBox("name", "", new { @class = "form-control required" })
+    </div>
+    <div class="form-group">
+        <p>Your Email</p>
+        @Html.TextBox("email", "", new { @class = "form-control required" })
+    </div>
+    <div class="form-group">
+        <p>Your Phone Number</p>
+        @Html.TextBox("phone", "", new { @class = "form-control required" })
+    </div>
+    @Html.Captcha(5)<br />
+    <p class="text-danger">@ViewBag.error</p>
+    @Html.Hidden("id", Model.Id)
+
+    <input type="submit" class="btn btn-outline-primary" value="Send Message">
+}

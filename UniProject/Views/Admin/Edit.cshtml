@@ -1,0 +1,85 @@
+﻿@model UniProject.Models.ViewModels.PropertiesImagesViewModel
+@{
+    ViewBag.Title = "Edit property";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+    <h2>Edit property</h2>
+
+
+
+    @using (Html.BeginForm("Edit", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="from-group">
+            @Html.ValidationMessageFor(e => e.Property.Title, null, new { @class = "text-danger" })<br />
+            @Html.LabelFor(m => m.Property.Title)
+            @Html.TextBoxFor(m => m.Property.Title)
+        </div>
+    <div class="from-group">
+        @Html.ValidationMessageFor(e => e.Property.City, null, new { @class = "text-danger" })<br />
+        @Html.LabelFor(m => m.Property.City)
+        @Html.TextBoxFor(m => m.Property.City)
+    </div>
+        <div class="from-group">
+            @Html.ValidationMessageFor(e => e.Property.Content, null, new { @class = "text-danger" })<br />
+            @Html.LabelFor(m => m.Property.Content)
+            @Html.TextAreaFor(m => m.Property.Content, 20, 80, new { @class = "form-control required" })
+
+        </div>
+        <div class="from-group">
+            @Html.ValidationMessageFor(e => e.Property.NoOfBeds, null, new { @class = "text-danger" })<br />
+            @Html.LabelFor(m => m.Property.NoOfBeds)
+            @Html.TextBoxFor(m => m.Property.NoOfBeds)
+        </div>
+        <div class="from-group">
+            @Html.ValidationMessageFor(e => e.Property.Price, null, new { @class = "text-danger" })<br />
+            @Html.LabelFor(m => m.Property.Price)
+            @Html.TextBoxFor(m => m.Property.Price)
+        </div>
+        <div class="from-group">
+            <table>
+                <tr>
+                    <td>@Html.ValidationMessageFor(e => e.Property.RentOrBuy, null, new { @class = "text-danger" })<br />
+                        @Html.LabelFor(m => m.Property.RentOrBuy)
+                    </td>
+                    <td>
+                        @Html.RadioButtonFor(m => m.Property.RentOrBuy, "true")<label>Rent</label>
+                    </td>
+                    <td>
+                        @Html.RadioButtonFor(m => m.Property.RentOrBuy, "false")<label>Buy</label>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+
+       
+        <div class="file-field">
+            @Html.LabelFor(m => m.Property.Image)
+            <div class="btn btn-primary btn-sm">
+                
+                <input type="file" name="images" multiple="multiple" />
+            </div>
+        </div>
+
+        @Html.ActionLink("Delete All Photos", "DeleteEditPhoto", new { id = Model.Property.Id }, new { @class = "btn btn-primary btn-sm" })
+       
+
+        @Html.HiddenFor(m => m.Property.Id)
+
+        @Html.AntiForgeryToken()
+
+    <button type="submit" class="btn btn-primary btn-sm">Save</button>
+        foreach (var image in Model.Images)
+        {
+            <div class="col-md-4 mt-1">
+                <div class="thumbnail">
+                    <div class="img-gal">
+                        <img src="@Url.Content("~/Content/Images/" + Model.Property.Id + "/" + image.FileName)" />
+                    </div>
+                </div>
+            </div>
+            @Html.DisplayFor(ModelItem => image.FileName)<hr />
+        }
+    }

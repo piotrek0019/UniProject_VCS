@@ -1,0 +1,21 @@
+﻿@model UniProject.Models.SubPage
+@{
+    ViewBag.Title = "DetailsSPage";
+    Layout = "~/Views/Shared/_Container_Layout.cshtml";
+}
+
+<head>
+    <style>
+        .myfooter {
+            position: fixed !important;
+        }
+    </style>
+</head>
+
+    <h2>DetailsSPage</h2>
+
+
+
+    <h2>@Html.DisplayFor(p => p.Title)</h2>
+    <hr />
+    @Html.Raw(Model.Content)

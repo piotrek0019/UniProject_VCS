@@ -1,0 +1,23 @@
+﻿@model UniProject.Models.IMS.Email
+@{
+    ViewBag.Title = "EditEmail";
+    Layout = "~/Views/Shared/_IMS_Layout.cshtml";
+}
+
+<h2>EditEmail</h2>
+
+@using (Html.BeginForm("EditEmail", "IMS", FormMethod.Post))
+{
+    int url = ViewBag.url;
+    
+    <div class="from-group">
+        @Html.LabelFor(e => e.EmailAdress)
+        @Html.TextBoxFor(e => e.EmailAdress, new { @class = "form-control" })
+    </div>
+
+    @Html.Hidden("url", url)
+    @Html.HiddenFor(p => p.Id)
+    @Html.AntiForgeryToken()
+
+    <button type="submit" class="btn btn-primary btn-sm">Save</button>
+}

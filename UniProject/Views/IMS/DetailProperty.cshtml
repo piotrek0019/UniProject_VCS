@@ -1,0 +1,30 @@
+﻿@model UniProject.Models.ViewModels.PropTransCustViewModel
+@{
+    ViewBag.Title = "DetailProperty";
+    Layout = "~/Views/Shared/_IMS_Layout.cshtml";
+}
+
+<h2>
+@Html.DisplayNameFor(p => p.PropertyIMS.Name): @Html.DisplayFor(p => p.PropertyIMS.Name)
+</h2>
+<p>@Html.DisplayNameFor(p => p.PropertyIMS.Adress): @Html.DisplayFor(p => p.PropertyIMS.Adress)</p>
+<p>@Html.DisplayNameFor(p => p.PropertyIMS.City): @Html.DisplayFor(p => p.PropertyIMS.City)</p>
+<p>@Html.DisplayNameFor(p => p.PropertyIMS.PostCode): @Html.DisplayFor(p => p.PropertyIMS.PostCode)</p>
+<h3>@Html.DisplayNameFor(p => p.PropertyIMS.Description)</h3>
+<p>@Html.DisplayFor(p => p.PropertyIMS.Description)<</p>
+
+@Html.ActionLink("Edit Property", "EditProperty", "IMS", new { id = Model.PropertyIMS.Id}, new { @class = "btn btn-outline-primary" })
+
+
+<h3>Transactions: </h3>
+<ul>
+    @foreach (var trans in Model.Transaction)
+    {
+        var transType = Model.TransType.Where(t => t.Id == trans.TransTypeId).FirstOrDefault();
+        var customer = Model.Customer.Where(c => c.Id == trans.CustomerId).FirstOrDefault();
+        string transaction = @Html.DisplayNameFor(t => trans.Price) + ": " + @Html.DisplayFor(t => trans.Price) + " - " + @Html.DisplayFor(t => transType.Name) + " by: " + @Html.DisplayFor(c => customer.Name);
+        <li>@Html.ActionLink(@transaction, "EditTrans", "IMS", new { id = trans.Id, url = 2}, new { @class = "p-2 text-dark" })</li>
+    }
+        
+</ul>
+@Html.ActionLink("Add Transaction", "NewTrans", "IMS", new { id = Model.PropertyIMS.Id, url = 2 }, new { @class = "btn btn-outline-primary" })

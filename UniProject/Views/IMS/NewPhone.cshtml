@@ -1,0 +1,27 @@
+﻿@model UniProject.Models.ViewModels.CustPhoneEmailViewModel
+@{
+    ViewBag.Title = "NewPhone";
+    Layout = "~/Views/Shared/_IMS_Layout.cshtml";
+}
+
+<h2>NewPhone</h2>
+
+@using (Html.BeginForm("NewPhone", "IMS", FormMethod.Post))
+{
+    int url = ViewBag.url;
+    
+    <div class="form-group">
+        @Html.LabelFor(c => c.Staff.Name)
+        @Html.TextBoxFor(c => Model.Staff.Name, new { @class = "form-control", disabled = "disabled", @readonly = "readonly" })
+        @Html.HiddenFor(p => p.Phone.StaffId)
+    </div>
+    <div>
+        @Html.DisplayNameFor(p => p.Phone.PhoneNumber)
+        @Html.TextBoxFor(p => p.Phone.PhoneNumber, new { @class = "form-control" })
+    </div>
+    @Html.AntiForgeryToken()
+    @Html.Hidden("url", url)
+
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+

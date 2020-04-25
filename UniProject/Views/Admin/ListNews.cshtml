@@ -1,0 +1,13 @@
+﻿@model List<UniProject.Models.News>
+
+@{
+    ViewBag.Title = "ListNews";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<h2>ListNews</h2>
+
+@foreach (var news in Model)
+{
+    @Html.ActionLink(news.Title, "EditNews", "Admin", new { id = news.Id }, new { @class = "p-2 text-dark" })<hr />
+}   

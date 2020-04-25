@@ -1,0 +1,111 @@
+﻿@model UniProject.Models.ViewModels.PropertiesViewModel
+
+@{
+    ViewBag.Title = "PropertyList";
+    Layout = "~/Views/Shared/_Container_Layout.cshtml";
+}
+
+
+
+    <h2>PropertyList</h2>
+    <div class="row">
+        @foreach (var item in Model.Property)
+        {
+
+            var image = Model.Images.Where(i => i.PropertyId == item.Id).FirstOrDefault();
+            var pathImage = "property.jpg";
+
+
+
+            if (image != null)
+            {
+                pathImage = item.Id + "/" + @image.FileName;
+            }
+
+            <div class="col-md-4">
+                <div class="thumbnail">
+                    <a href="@Url.Action("Details", "Properties", new {id = item.Id})" class="text-dark">
+                        <img src="@Url.Content("~/Content/Images/" + pathImage)" alt="Lights" style="width:100%">
+                        <div class="caption">
+                            <p>@Html.DisplayFor(modelItem => item.Added)</p>
+                            <p>@Html.DisplayFor(modelItem => item.Title)</p>
+                            <p>Numbers of beds: @Html.DisplayFor(modelItem => item.NoOfBeds)</p>
+                            <p>Price: @Html.DisplayFor(modelItem => item.Price) &#163;</p>
+
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+        }
+    </div>
+
+    <!--
+         @*
+              @Html.ImageActionLink("Details", "Details", "Properties", null, null, "~/Content/Images/property.jpg")
+
+              @Html.DisplayFor(modelItem => item.Title)<br />
+            <p>Price 550£</p>
+
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Content)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Added)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.City)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NoOfBeds)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RentOrBuy)
+                </th>
+                <th></th>
+            </tr>
+
+           @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Content)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Added)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.City)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NoOfBeds)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RentOrBuy)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+
+        </table>
+             *@
+

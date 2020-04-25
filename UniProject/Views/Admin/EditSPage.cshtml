@@ -1,0 +1,28 @@
+﻿@model UniProject.Models.SubPage
+@{
+    ViewBag.Title = "EditSPage";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+@Html.ActionLink("Back to menu", "Index", "Admin", null, new { @class = "btn btn-outline-primary" })
+
+<h2>New EditSubPage</h2>
+
+
+
+@using (Html.BeginForm("EditSPage", "Admin"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Title)
+        @Html.TextBoxFor(m => m.Title, new { @class = "form-control myTextBox50" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Content)
+        @Html.TextAreaFor(m => m.Content, 20, 80, new { @class = "form-control required" })
+
+    </div>
+
+    @Html.HiddenFor(m => m.Id)
+    @Html.AntiForgeryToken()
+
+    <button type="submit" class="btn btn-outline-primary">Save</button>
+}
