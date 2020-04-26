@@ -20,10 +20,7 @@ namespace UniProject.Controllers
         {
             _context.Dispose();
         }
-        public ActionResult Login()
-        {
-            return View();
-        }
+       
         // GET: IMS
         public ActionResult Index()
         {
