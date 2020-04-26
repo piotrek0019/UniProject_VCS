@@ -11,6 +11,7 @@ namespace UniProject.Controllers
 {
     public class IMSController : Controller
     {
+        //initialize the database context
         private UniDbContext _context;
         public IMSController()
         {
