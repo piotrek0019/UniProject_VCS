@@ -31,6 +31,8 @@ namespace UniProject.Controllers
         [HttpGet]
         public ActionResult NewTrans(int? id, int? url)
         {
+            try
+            { 
             if (id == null || url == null)
                 return Content("Try again");
 
@@ -56,6 +58,11 @@ namespace UniProject.Controllers
                 viewModel.Transaction.PropertyIMSId = id.Value;
                         
             return View(viewModel);
+            }
+            catch(Exception e)
+            {
+                return Content("Something has gone wrong");
+            }
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
