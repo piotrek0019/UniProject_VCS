@@ -134,9 +134,9 @@ namespace UniProject.Controllers
             else
             {
 
-                var sender = new MailAddress("piotr@august-web.com");
-                var password = "August22!";
-                var reciver = new MailAddress("piotr@august-web.com");
+                var sender = new MailAddress("********);
+                var password = "******";
+                var reciver = new MailAddress("**********");
                 var subject = "Query from: " + name;
                 var content = "Name: " + name + "\nEmail: " + email + "\nPhone Number: " + phone + "\n" + message;
                 var smtp = new SmtpClient
